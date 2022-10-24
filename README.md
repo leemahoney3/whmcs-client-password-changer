@@ -26,6 +26,10 @@ There are a number of configuration optons available, please see the Configurati
 
 4. Configre the addon as needed, it will then be available through **Addons >  Client Password Changer** 
 
+## How to update
+
+Simply copy the modules folder into the root of your WHMCS folder accepting any overwrites. I'd recommend keeping the module enabled to preserve your cofiguration settings.
+
 ## Configuration
 
 There are a number of configuration options available when activating the addon. Please find them below.
