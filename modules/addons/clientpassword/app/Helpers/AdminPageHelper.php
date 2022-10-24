@@ -16,7 +16,7 @@ use LMTech\ClientPassword\Helpers\TemplateHelper;
  * @author     Lee Mahoney <lee@leemahoney.dev>
  * @copyright  Copyright (c) Lee Mahoney 2022
  * @license    MIT License
- * @version    1.0.3
+ * @version    1.0.4
  * @link       https://leemahoney.dev
  */
 

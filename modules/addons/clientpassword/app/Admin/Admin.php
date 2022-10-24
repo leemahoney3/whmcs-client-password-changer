@@ -20,7 +20,7 @@ use LMTech\ClientPassword\Helpers\PaginationHelper;
  * @author     Lee Mahoney <lee@leemahoney.dev>
  * @copyright  Copyright (c) Lee Mahoney 2022
  * @license    MIT License
- * @version    1.0.3
+ * @version    1.0.4
  * @link       https://leemahoney.dev
  */
 
@@ -66,7 +66,7 @@ class Admin {
 
             $user = User::where('id', $id)->first();
 
-            if (!count($user)) {
+            if (!$user) {
                 RedirectHelper::page('dashboard', ['error' => 'nouser']);
             }
 

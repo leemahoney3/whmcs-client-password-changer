@@ -14,7 +14,7 @@ use WHMCS\Module\Addon\Setting as AddonSetting;
  * @author     Lee Mahoney <lee@leemahoney.dev>
  * @copyright  Copyright (c) Lee Mahoney 2022
  * @license    MIT License
- * @version    1.0.3
+ * @version    1.0.4
  * @link       https://leemahoney.dev
  */
 
@@ -29,7 +29,7 @@ class Config {
         return [
             'name'          => 'Client Password Changer',
             'description'   => 'Easily change your clients/users passwords from within the admin area',
-            'version'       => '1.0.3',
+            'version'       => '1.0.4',
             'author'        => '<a href="https://leemahoney.dev">Lee Mahoney</a>',
             'fields'        => [
                 'showButtons'           => [
