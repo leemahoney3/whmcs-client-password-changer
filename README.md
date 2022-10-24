@@ -2,8 +2,8 @@ Psst... If you would like to support my work or are just pure sound, you can [Bu
 
 # WHMCS Client Password Changer
 
-### Version 1.0.3 is now available
-Made some modifications to the pagination helper
+### Version 1.0.4 is now available
+Some minor bug fixes
 
 ---
 
@@ -18,11 +18,13 @@ There are a number of configuration optons available, please see the Configurati
 
 ## How do I install this?
 
-1. Copy the ```modules``` folder to your root WHMCS directory.
+1. Download the latest release from the releases section.
 
-2. Navigate to **System Settings > Addon Modules** and click **Activate** beside  **Client Password Changer**.
+2. Copy the ```modules``` folder to your root WHMCS directory.
 
-3. Configre the addon as needed, it will then be available through **Addons >  Client Password Changer** 
+3. Navigate to **System Settings > Addon Modules** and click **Activate** beside  **Client Password Changer**.
+
+4. Configre the addon as needed, it will then be available through **Addons >  Client Password Changer** 
 
 ## Configuration
 
