@@ -10,7 +10,7 @@
  * @author     Lee Mahoney <lee@leemahoney.dev>
  * @copyright  Copyright (c) Lee Mahoney 2022
  * @license    MIT License
- * @version    1.0.4
+ * @version    1.0.5
  * @link       https://leemahoney.dev
  */
 

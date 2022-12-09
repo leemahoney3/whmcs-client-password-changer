@@ -2,6 +2,7 @@
 
 namespace LMTech\ClientPassword\Config;
 
+use WHMCS\Config\Setting;
 use WHMCS\Module\Addon\Setting as AddonSetting;
 
 /**
@@ -14,7 +15,7 @@ use WHMCS\Module\Addon\Setting as AddonSetting;
  * @author     Lee Mahoney <lee@leemahoney.dev>
  * @copyright  Copyright (c) Lee Mahoney 2022
  * @license    MIT License
- * @version    1.0.4
+ * @version    1.0.5
  * @link       https://leemahoney.dev
  */
 
@@ -29,7 +30,7 @@ class Config {
         return [
             'name'          => 'Client Password Changer',
             'description'   => 'Easily change your clients/users passwords from within the admin area',
-            'version'       => '1.0.4',
+            'version'       => '1.0.5',
             'author'        => '<a href="https://leemahoney.dev">Lee Mahoney</a>',
             'fields'        => [
                 'showButtons'           => [
@@ -109,6 +110,13 @@ class Config {
                     'Description'       => 'Whether or not to show the update alert when a new version of this script is available',
                     'Default'           => 'yes',
                 ],
+                'csrfKey'               => [
+                    'FriendlyName'      => 'CSRF Key',
+                    'Type'              => 'text',
+                    'Size'              => '25',
+                    'Description'       => 'Random key used for CSRF session (please change default)',
+                    'Default'           => substr(sha1(self::getMaster('SystemURL')), 0, 8),
+                ]
             ],
         ];
 
@@ -117,6 +125,10 @@ class Config {
     
     public static function get($setting) {
         return AddonSetting::where('module', 'clientpassword')->where('setting', $setting)->first()->value;
+    }
+
+    public static function getMaster($setting) {
+        return Setting::where('setting', $setting)->first()->value;
     }
 
     public static function checkForUpdate() {

@@ -19,7 +19,7 @@
                             <span class="input-group-addon"><a href="#" id="genPW" onClick="event.preventDefault(); generatePassword()"><i class="glyphicon glyphicon-repeat"></i></a></span>
                         </div>
                     </div>
-
+                    <input type="hidden" name="token" value="{$csrfToken}">
                     <input type="submit" value="Change Password" class="btn btn-primary pull-right" />
                 </form>
             </div>

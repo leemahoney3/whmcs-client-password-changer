@@ -1,6 +1,7 @@
 <?php
 
 use LMTech\ClientPassword\Config\Config;
+use LMTech\ClientPassword\Helpers\CsrfHelper;
 
 /**
  * WHMCS Client Password Changer
@@ -12,7 +13,7 @@ use LMTech\ClientPassword\Config\Config;
  * @author     Lee Mahoney <lee@leemahoney.dev>
  * @copyright  Copyright (c) Lee Mahoney 2022
  * @license    MIT License
- * @version    1.0.4
+ * @version    1.0.5
  * @link       https://leemahoney.dev
  */
 
@@ -35,6 +36,9 @@ function add_clientpassword_buttons($vars) {
                 return '';
             }
         }
+
+        $systemURL = Config::getMaster('SystemURL');
+        $csrfToken = CsrfHelper::generate(Config::get('csrfKey'));
 
         if (Config::get('showModal')) {
             return '
@@ -103,8 +107,8 @@ function add_clientpassword_buttons($vars) {
 
                             $.ajax({
                                 type: "POST",
-                                url: "/' . $GLOBALS['customadminpath'] . '/addonmodules.php?module=clientpassword&page=data",
-                                data: "action=grab&user=" + userID,
+                                url: "' . $systemURL . $GLOBALS['customadminpath'] . '/addonmodules.php?module=clientpassword&page=data",
+                                data: "action=grab&user=" + userID + "&token=' . $csrfToken . '",
                                 beforeSend: function () {
                                     $("#modalChangePwLoader").fadeIn();
                                     $(".modalChangePwAlert").removeClass("alert-success").addClass("alert-danger").html("").hide();
@@ -132,8 +136,8 @@ function add_clientpassword_buttons($vars) {
 
                             $.ajax({
                                 type: "POST",
-                                url: "/' . $GLOBALS['customadminpath'] . '/addonmodules.php?module=clientpassword&page=data",
-                                data: "action=change&user=" + userID + "&pw=" + password,
+                                url: "' . $systemURL . $GLOBALS['customadminpath'] . '/addonmodules.php?module=clientpassword&page=data",
+                                data: "action=change&user=" + userID + "&pw=" + password + "&token=' . $csrfToken . '",
                                 success: function (res) {
                                     res = JSON.parse(res);
 
@@ -186,14 +190,14 @@ function add_clientpassword_buttons($vars) {
             return '
                 <script>
                     $(".btn-permissions").each(function (i, obj) {
-                        $(this).after(\'<a href="/' . $GLOBALS['customadminpath'] . '/addonmodules.php?module=clientpassword&page=change&id=\' + $(this).attr("data-user-id") + \'" class="btn btn-default changePwBtn">Change Password</a>\');
+                        $(this).after(\'<a href="' . $systemURL . $GLOBALS['customadminpath'] . '/addonmodules.php?module=clientpassword&page=change&id=\' + $(this).attr("data-user-id") + \'" class="btn btn-default changePwBtn">Change Password</a>\');
                     });
 
                     $(".open-modal.manage-user").each(function (i, obj) {
 
                         let id = $(this).attr("href").replace( /^\D+/g, "");
 
-                        $(this).after(\'<a href="/' . $GLOBALS['customadminpath'] . '/addonmodules.php?module=clientpassword&page=change&id=\' + id + \'" class="btn btn-default btn-sm changePwBtn">Change Pass</a>\');
+                        $(this).after(\'<a href="' . $systemURL . $GLOBALS['customadminpath'] . '/addonmodules.php?module=clientpassword&page=change&id=\' + id + \'" class="btn btn-default btn-sm changePwBtn">Change Pass</a>\');
                     });
                 </script>
             ';

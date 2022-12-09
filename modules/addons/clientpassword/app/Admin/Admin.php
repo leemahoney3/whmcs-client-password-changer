@@ -6,6 +6,7 @@ use WHMCS\User\User;
 use WHMCS\Database\Capsule;
 use WHMCS\Authentication\CurrentUser;
 use LMTech\ClientPassword\Config\Config;
+use LMTech\ClientPassword\Helpers\CsrfHelper;
 use LMTech\ClientPassword\Helpers\RedirectHelper;
 use LMTech\ClientPassword\Helpers\AdminPageHelper;
 use LMTech\ClientPassword\Helpers\PaginationHelper;
@@ -20,7 +21,7 @@ use LMTech\ClientPassword\Helpers\PaginationHelper;
  * @author     Lee Mahoney <lee@leemahoney.dev>
  * @copyright  Copyright (c) Lee Mahoney 2022
  * @license    MIT License
- * @version    1.0.4
+ * @version    1.0.5
  * @link       https://leemahoney.dev
  */
 
@@ -71,8 +72,19 @@ class Admin {
             }
 
             $passThru['user'] = $user;
+            
+            if (!isset($_POST['newPw'])) {
+                $passThru['csrfToken'] = CsrfHelper::generate(Config::get('csrfKey'));
+            }
 
             if (isset($_POST['newPw']) && !empty($_POST['newPw'])) {
+
+                if (!CsrfHelper::verify(Config::get('csrfKey'), htmlspecialchars($_POST['token']))) {
+                    die(json_encode([
+                        'status'    => 'error',
+                        'message'   => 'CSRF Check Failed. Please try again.',
+                    ]));
+                }
 
                 User::where('id', $user->id)->first()->updatePassword(trim($_POST['newPw']));
 
@@ -122,6 +134,13 @@ class Admin {
                 die(json_encode([
                     'status'    => 'error',
                     'data'      => 'This module function is not enabled.',
+                ]));
+            }
+
+            if (!CsrfHelper::verify(Config::get('csrfKey'), htmlspecialchars($_POST['token']))) {
+                die(json_encode([
+                    'status'    => 'error',
+                    'message'   => 'CSRF Check Failed. Please try again.',
                 ]));
             }
 
