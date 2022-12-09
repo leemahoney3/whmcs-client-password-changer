@@ -2,8 +2,12 @@ Psst... If you would like to support my work or are just pure sound, you can [Bu
 
 # WHMCS Client Password Changer
 
-### Version 1.0.4 is now available
-Some minor bug fixes
+### Version 1.0.5 is now available
+Additional features and security improvements.
+
+CSRF tokens added. Please ensure you go to System Settings > Addon Modules > Client Password Changer > Configure and enter a unique "CSRF Key". Press Save Changes aferwards.
+
+Fixed bug where this did not work in a subdirectory (eg. /billing/).
 
 ---
 
