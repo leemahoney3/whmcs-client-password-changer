@@ -24,7 +24,7 @@ There are a number of configuration optons available, please see the Configurati
 
 3. Navigate to **System Settings > Addon Modules** and click **Activate** beside  **Client Password Changer**.
 
-4. Configre the addon as needed, it will then be available through **Addons >  Client Password Changer** 
+4. Configure the addon as needed, it will then be available through **Addons >  Client Password Changer** 
 
 ## How to update
 
