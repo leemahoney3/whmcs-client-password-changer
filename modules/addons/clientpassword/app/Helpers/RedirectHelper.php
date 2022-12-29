@@ -2,6 +2,8 @@
 
 namespace LMTech\ClientPassword\Helpers;
 
+use LMTech\ClientPassword\Config\Config;
+
 /**
  * WHMCS Client Password Changer
  *
@@ -12,7 +14,7 @@ namespace LMTech\ClientPassword\Helpers;
  * @author     Lee Mahoney <lee@leemahoney.dev>
  * @copyright  Copyright (c) Lee Mahoney 2022
  * @license    MIT License
- * @version    1.0.5
+ * @version    1.0.6
  * @link       https://leemahoney.dev
  */
 
@@ -29,7 +31,7 @@ class RedirectHelper {
 
     public static function page($page, $args = []) {
 
-        $url = "/" . $GLOBALS['customadminpath'] . "/addonmodules.php?module=clientpassword&page={$page}";
+        $url = Config::getMaster('SystemURL') . $GLOBALS['customadminpath'] . "/addonmodules.php?module=clientpassword&page={$page}";
 
         if (!empty($args)) {
             foreach ($args as $arg => $value) {

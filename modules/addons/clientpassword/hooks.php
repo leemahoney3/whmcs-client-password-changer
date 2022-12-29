@@ -13,7 +13,7 @@ use LMTech\ClientPassword\Helpers\CsrfHelper;
  * @author     Lee Mahoney <lee@leemahoney.dev>
  * @copyright  Copyright (c) Lee Mahoney 2022
  * @license    MIT License
- * @version    1.0.5
+ * @version    1.0.6
  * @link       https://leemahoney.dev
  */
 
